@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import RandomTechTerm from '$lib/components/RandomTechTerm.svelte';
   
   // Set document title
   onMount(() => {
@@ -46,12 +47,14 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Hello, I'm {name}</h1>
-        <p class="title">{title}</p>
-        <p class="intro">
-          I build beautiful, responsive websites and applications with modern technologies.
-          Passionate about creating seamless user experiences and robust backend systems.
-        </p>
+        <div class="glitch-container">
+          <h1 class="glitch" data-text="Hi, I'm {name}">Hi, I'm {name}</h1>
+        </div>
+        <h2 class="gradient-text">{title}</h2>
+        <div class="hero-description">
+          I build modern web applications with cutting-edge technologies.
+          Interested in <RandomTechTerm asLink={true} />? Let's connect!
+        </div>
         <div class="cta-buttons">
           <a href="/projects" class="btn btn-primary">View Projects</a>
           <a href="/blog" class="btn btn-outline">Read Blog</a>
@@ -63,7 +66,7 @@
   <!-- About Me Section -->
   <section class="about" id="about">
     <div class="container">
-      <h2>About Me</h2>
+      <h2 class="section-title">About Me</h2>
       <div class="about-content">
         <div class="about-text">
           <p>
@@ -88,7 +91,7 @@
   <!-- Skills Section -->
   <section class="skills">
     <div class="container">
-      <h2>Skills</h2>
+      <h2 class="section-title">Skills</h2>
       <div class="skills-content">
         <div class="skill-category">
           <h3>Languages</h3>
@@ -126,7 +129,7 @@
   <!-- Contact Section -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2>Get In Touch</h2>
+      <h2 class="section-title">Get In Touch</h2>
       <p class="contact-intro">
         Have a project in mind or want to chat? Feel free to reach out!
       </p>
@@ -209,12 +212,19 @@
 <style>
   main {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #333;
+    color: #f0f0f0;
     line-height: 1.6;
+    position: relative;
+    z-index: 1;
   }
   
   section {
     padding: 5rem 0;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 2rem 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
   }
   
   .container {
@@ -223,42 +233,152 @@
     padding: 0 1.5rem;
   }
   
-  h2 {
+  .section-title {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
-    color: #1a1a1a;
+    color: #f0f0f0;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #00ff00, #00aa00);
+    border-radius: 3px;
   }
   
   /* Hero Section */
   .hero {
-    background-color: #f0f4f8;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 8rem 0;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    margin-top: 0;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 255, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
   }
   
   .hero-content {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 2;
   }
   
-  .hero h1 {
-    font-size: 3.5rem;
+  /* Glitch effect for the title */
+  .glitch-container {
+    position: relative;
+    display: inline-block;
     margin-bottom: 0.5rem;
-    color: #1a1a1a;
   }
   
-  .hero .title {
+  .glitch {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #f0f0f0;
+    position: relative;
+    margin: 0;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.1), 
+                -0.05em 0 0 rgba(0, 255, 0, 0.1), 
+                0.025em 0 0 rgba(0, 0, 255, 0.1);
+    animation: glitch 3s infinite;
+  }
+  
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+  
+  .glitch::before {
+    animation: glitch-effect 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(-0.04em, -0.025em);
+    opacity: 0.8;
+  }
+  
+  .glitch::after {
+    animation: glitch-effect 2.5s infinite reverse;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translate(0.04em, 0.025em);
+    opacity: 0.8;
+  }
+  
+  @keyframes glitch-effect {
+    0% {
+      transform: translate(0);
+    }
+    10% {
+      transform: translate(-5px, 5px);
+    }
+    20% {
+      transform: translate(-5px, -5px);
+    }
+    30% {
+      transform: translate(5px, 5px);
+    }
+    40% {
+      transform: translate(5px, -5px);
+    }
+    50% {
+      transform: translate(-5px, 5px);
+    }
+    60% {
+      transform: translate(5px, 5px);
+    }
+    70% {
+      transform: translate(-5px, -5px);
+    }
+    80% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  .gradient-text {
     font-size: 1.5rem;
-    color: #3b82f6;
     margin-bottom: 1.5rem;
     font-weight: 600;
+    background: linear-gradient(90deg, #00ff00, #00aa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
   }
   
-  .hero .intro {
+  .hero .hero-description {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: #4b5563;
+    color: #cccccc;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .cta-buttons {
@@ -267,9 +387,44 @@
     justify-content: center;
   }
   
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(90deg, #00ff00, #00aa00);
+    color: #000;
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.25);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 10px rgba(0, 255, 0, 0.3);
+  }
+  
+  .btn-outline {
+    background: transparent;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+  }
+  
+  .btn-outline:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
   /* About Section */
   .about {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
   }
   
   .about-content {
@@ -283,12 +438,13 @@
   .about-text p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    color: #4b5563;
+    color: #cccccc;
   }
   
   /* Skills Section */
   .skills {
-    background-color: #f9fafb;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
   }
   
   .skills-content {
@@ -300,22 +456,25 @@
   }
   
   .skill-category {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
   }
   
   .skill-category:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.3);
   }
   
   .skill-category h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    color: #3b82f6;
+    color: #00ff00;
     text-align: center;
   }
   
@@ -326,18 +485,29 @@
   
   .skill-list li {
     padding: 0.75rem 0;
-    border-bottom: 1px solid #f0f4f8;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
     font-size: 1.1rem;
-    color: #4b5563;
+    color: #cccccc;
+    position: relative;
+    padding-left: 1.5rem;
   }
   
   .skill-list li:last-child {
     border-bottom: none;
   }
   
+  .skill-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #00ff00;
+    font-weight: bold;
+  }
+  
   /* Contact Section */
   .contact {
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
   }
   
   .contact-intro {
@@ -345,7 +515,7 @@
     max-width: 600px;
     margin: 0 auto 3rem;
     font-size: 1.2rem;
-    color: #4b5563;
+    color: #cccccc;
   }
   
   .contact-content {
@@ -363,12 +533,12 @@
   .contact-item h3 {
     font-size: 1.3rem;
     margin-bottom: 0.75rem;
-    color: #3b82f6;
+    color: #00ff00;
   }
   
   .contact-item p {
     font-size: 1.1rem;
-    color: #4b5563;
+    color: #cccccc;
   }
   
   .social-links {
@@ -378,20 +548,22 @@
   }
   
   .social-links a {
-    color: #4b5563;
+    color: #cccccc;
     text-decoration: none;
     transition: color 0.2s ease;
   }
   
   .social-links a:hover {
-    color: #3b82f6;
+    color: #00ff00;
   }
   
   .contact-form {
-    background-color: #f9fafb;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
   }
   
   .form-group {
@@ -402,26 +574,28 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #4b5563;
+    color: #cccccc;
   }
   
   .form-group input,
   .form-group textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid #333;
     border-radius: 4px;
     font-size: 1rem;
     font-family: inherit;
-    background-color: white;
-    transition: border-color 0.2s ease;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #f0f0f0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(5px);
   }
   
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #00ff00;
+    box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.1);
   }
   
   .form-success {
@@ -430,16 +604,17 @@
   }
   
   .form-success h3 {
-    color: #059669;
+    color: #00ff00;
     margin-bottom: 1rem;
   }
   
   .form-error {
-    background-color: #fee2e2;
-    color: #b91c1c;
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff6666;
     padding: 0.75rem;
     border-radius: 4px;
     margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
   }
   
   /* Responsive Styles */
@@ -452,7 +627,7 @@
       padding: 6rem 0;
     }
     
-    .hero h1 {
+    .glitch {
       font-size: 2.5rem;
     }
     

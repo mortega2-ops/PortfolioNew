@@ -1,7 +1,10 @@
 <script lang="ts">
   import Navbar from '$lib/components/Navbar.svelte';
+  import MatrixBackground from '$lib/components/MatrixBackground.svelte';
   import '../app.css';
 </script>
+
+<MatrixBackground opacity={0.2} speed={1.2} color="#00ff00" />
 
 <Navbar />
 
@@ -11,8 +14,8 @@
   <div class="container">
     <div class="footer-content">
       <div class="footer-info">
-        <h3>Portfolio</h3>
-        <p>A showcase of my projects and blog posts.</p>
+        <h3>Tech Explorer</h3>
+        <p>Discovering the digital frontier, one project at a time.</p>
       </div>
       
       <div class="footer-links">
@@ -53,8 +56,10 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f9fafb;
-    color: #333;
+    background-color: #000;
+    color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
   }
   
   :global(*) {
@@ -62,10 +67,13 @@
   }
   
   .footer {
-    background-color: #1a1a1a;
+    background-color: rgba(0, 0, 0, 0.9);
     color: #f9fafb;
     padding: 3rem 0 1.5rem;
     margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(0, 255, 0, 0.1);
   }
   
   .container {
@@ -84,6 +92,10 @@
   .footer-info h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    background: linear-gradient(90deg, #00ff00, #00aa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
   }
   
   .footer-info p {
@@ -94,6 +106,7 @@
   .footer-links h4, .footer-social h4 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+    color: #f9fafb;
   }
   
   .footer-links ul {
@@ -113,7 +126,8 @@
   }
   
   .footer-links a:hover, .social-links a:hover {
-    color: #3b82f6;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
   }
   
   .social-links {
