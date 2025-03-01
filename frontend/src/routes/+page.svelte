@@ -1,0 +1,472 @@
+<script lang="ts">
+  import { onMount } from 'svelte';
+  
+  // Set document title
+  onMount(() => {
+    document.title = "Portfolio | Home";
+  });
+  
+  // Your information
+  const name = "Your Name";
+  const title = "Full Stack Developer";
+  
+  // Form handling
+  let formData = {
+    name: '',
+    email: '',
+    message: ''
+  };
+  
+  let formSubmitted = false;
+  let formError = false;
+  
+  function handleSubmit() {
+    // In a real application, you would send this data to your backend
+    console.log('Form submitted:', formData);
+    
+    // Simulate form submission
+    if (formData.name && formData.email && formData.message) {
+      formSubmitted = true;
+      formError = false;
+      
+      // Reset form
+      formData = {
+        name: '',
+        email: '',
+        message: ''
+      };
+    } else {
+      formError = true;
+    }
+  }
+</script>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Hello, I'm {name}</h1>
+        <p class="title">{title}</p>
+        <p class="intro">
+          I build beautiful, responsive websites and applications with modern technologies.
+          Passionate about creating seamless user experiences and robust backend systems.
+        </p>
+        <div class="cta-buttons">
+          <a href="/projects" class="btn btn-primary">View Projects</a>
+          <a href="/blog" class="btn btn-outline">Read Blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Me Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            I'm a passionate full-stack developer with expertise in building web applications
+            using modern technologies. With a strong foundation in both frontend and backend
+            development, I create seamless, user-friendly experiences.
+          </p>
+          <p>
+            My journey in software development began several years ago, and I've since worked
+            on a variety of projects ranging from small business websites to complex web applications.
+            I'm constantly learning and exploring new technologies to improve my skills.
+          </p>
+          <p>
+            When I'm not coding, you can find me hiking, reading tech blogs, or experimenting
+            with new programming languages and frameworks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section class="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="skills-content">
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <ul class="skill-list">
+            <li>JavaScript/TypeScript</li>
+            <li>Python</li>
+            <li>HTML/CSS</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Frameworks</h3>
+          <ul class="skill-list">
+            <li>React</li>
+            <li>Svelte/SvelteKit</li>
+            <li>Django</li>
+            <li>Express.js</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Tools</h3>
+          <ul class="skill-list">
+            <li>Git</li>
+            <li>Docker</li>
+            <li>VS Code</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p class="contact-intro">
+        Have a project in mind or want to chat? Feel free to reach out!
+      </p>
+      
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>Email</h3>
+            <p><a href="mailto:your.email@example.com">your.email@example.com</a></p>
+          </div>
+          
+          <div class="contact-item">
+            <h3>Location</h3>
+            <p>City, Country</p>
+          </div>
+          
+          <div class="contact-item">
+            <h3>Social</h3>
+            <div class="social-links">
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          {#if formSubmitted}
+            <div class="form-success">
+              <h3>Thank you for your message!</h3>
+              <p>I'll get back to you as soon as possible.</p>
+            </div>
+          {:else}
+            <form on:submit|preventDefault={handleSubmit}>
+              {#if formError}
+                <div class="form-error">
+                  <p>Please fill out all fields.</p>
+                </div>
+              {/if}
+              
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  bind:value={formData.name} 
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  bind:value={formData.email} 
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea 
+                  id="message" 
+                  rows="5" 
+                  bind:value={formData.message} 
+                  required
+                ></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          {/if}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  main {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  section {
+    padding: 5rem 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #1a1a1a;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background-color: #f0f4f8;
+    padding: 8rem 0;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+  }
+  
+  .hero .title {
+    font-size: 1.5rem;
+    color: #3b82f6;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .hero .intro {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #4b5563;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  /* About Section */
+  .about {
+    background-color: #fff;
+  }
+  
+  .about-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #4b5563;
+  }
+  
+  /* Skills Section */
+  .skills {
+    background-color: #f9fafb;
+  }
+  
+  .skills-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .skill-category {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .skill-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #3b82f6;
+    text-align: center;
+  }
+  
+  .skill-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .skill-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f4f8;
+    font-size: 1.1rem;
+    color: #4b5563;
+  }
+  
+  .skill-list li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Contact Section */
+  .contact {
+    background-color: #fff;
+  }
+  
+  .contact-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
+    color: #4b5563;
+  }
+  
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .contact-item {
+    margin-bottom: 2rem;
+  }
+  
+  .contact-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #3b82f6;
+  }
+  
+  .contact-item p {
+    font-size: 1.1rem;
+    color: #4b5563;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-links a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .social-links a:hover {
+    color: #3b82f6;
+  }
+  
+  .contact-form {
+    background-color: #f9fafb;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4b5563;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: white;
+    transition: border-color 0.2s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .form-success {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .form-success h3 {
+    color: #059669;
+    margin-bottom: 1rem;
+  }
+  
+  .form-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    section {
+      padding: 4rem 0;
+    }
+    
+    .hero {
+      padding: 6rem 0;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .contact-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .cta-buttons .btn {
+      width: 100%;
+    }
+  }
+</style>
