@@ -1,15 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import RandomTechTerm from '$lib/components/RandomTechTerm.svelte';
   
   // Set document title
   onMount(() => {
-    document.title = "Portfolio | Home";
+    document.title = "Mark Ortega | Portfolio";
   });
   
   // Your information
-  const name = "Your Name";
-  const title = "Full Stack Developer";
+  const name = "Mark Ortega";
+  const title = "Software Developer";
   
   // Form handling
   let formData = {
@@ -53,7 +52,7 @@
         <h2 class="gradient-text">{title}</h2>
         <div class="hero-description">
           I build modern web applications with cutting-edge technologies.
-          Interested in <RandomTechTerm asLink={true} />? Let's connect!
+          Interested in <span class="highlight-text">digital innovation</span>? Let's connect!
         </div>
         <div class="cta-buttons">
           <a href="/projects" class="btn btn-primary">View Projects</a>
@@ -70,7 +69,7 @@
       <div class="about-content">
         <div class="about-text">
           <p>
-            I'm a passionate full-stack developer with expertise in building web applications
+            I'm a passionate software developer with expertise in building web applications
             using modern technologies. With a strong foundation in both frontend and backend
             development, I create seamless, user-friendly experiences.
           </p>
@@ -643,5 +642,24 @@
     .cta-buttons .btn {
       width: 100%;
     }
+  }
+  
+  .highlight-text {
+    color: #00ff00;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .highlight-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #00ff00;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
   }
 </style>

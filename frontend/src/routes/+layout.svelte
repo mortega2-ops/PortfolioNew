@@ -4,7 +4,7 @@
   import '../app.css';
 </script>
 
-<MatrixBackground opacity={0.2} speed={1.2} color="#00ff00" />
+<MatrixBackground opacity={0.4} speed={0.8} color="#00ff00" />
 
 <Navbar />
 
