@@ -1,4 +1,10 @@
-FROM node:18-alpine as build
+# For production:
+# - Use a multi-stage build to create a smaller production image
+# - Build static files and serve them with nginx
+# - Remove development-specific configurations
+
+# Development image (current setup)
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -11,23 +17,34 @@ RUN npm ci
 # Copy the rest of the code
 COPY . .
 
-# Build the application
-RUN npm run build
-
-# Production stage
-FROM node:18-alpine
-
-WORKDIR /app
-
-# Copy built assets from the build stage
-COPY --from=build /app/build ./build
-COPY --from=build /app/package.json ./
-
-# Install production dependencies
-RUN npm ci --production
-
 # Expose the port
 EXPOSE 3000
 
-# Start the application
-CMD ["node", "build"] 
+# Start the application in development mode
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+# PROD: For production, replace the above with a multi-stage build like:
+# 
+# # Build stage
+# FROM node:18-alpine AS build
+# 
+# WORKDIR /app
+# 
+# COPY package*.json ./
+# RUN npm ci
+# 
+# COPY . .
+# RUN npm run build
+# 
+# # Production stage
+# FROM nginx:alpine
+# 
+# # Copy built assets from build stage
+# COPY --from=build /app/build /usr/share/nginx/html
+# 
+# # Copy nginx configuration if needed
+# # COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# 
+# EXPOSE 80
+# 
+# CMD ["nginx", "-g", "daemon off;"] 
