@@ -122,9 +122,10 @@
 <style>
   main {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #333;
+    color: #f0f0f0;
     line-height: 1.6;
-    padding: 2rem 0;
+    padding: 6rem 0 2rem 0;
+    background-color: rgba(0, 0, 0, 0.8);
   }
   
   .container {
@@ -141,12 +142,12 @@
   .projects-header h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #1a1a1a;
+    color: #f0f0f0;
   }
   
   .projects-header p {
     font-size: 1.1rem;
-    color: #555;
+    color: #cccccc;
     max-width: 700px;
     margin: 0 auto;
   }
@@ -155,7 +156,7 @@
     text-align: center;
     padding: 5rem 0;
     font-size: 1.2rem;
-    color: #555;
+    color: #cccccc;
   }
   
   .projects-grid {
@@ -167,14 +168,17 @@
   .project-card {
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 102, 255, 0.1);
   }
   
   .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 102, 255, 0.3);
   }
   
   .project-image {
@@ -200,11 +204,11 @@
   .project-content h2 {
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
-    color: #1a1a1a;
+    color: #f0f0f0;
   }
   
   .project-description {
-    color: #555;
+    color: #cccccc;
     margin-bottom: 1rem;
     line-height: 1.5;
   }
@@ -217,12 +221,13 @@
   }
   
   .tech-tag {
-    background-color: #f0f4f8;
+    background-color: rgba(0, 0, 0, 0.5);
     color: #0066ff;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
+    border: 1px solid rgba(0, 102, 255, 0.3);
   }
   
   .project-links {

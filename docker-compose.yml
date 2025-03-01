@@ -1,33 +1,24 @@
-# For production:
-# - Consider using a separate docker-compose.prod.yml file
-# - Remove development-specific volume mounts
-# - Add production environment variables
-# - Consider adding a database service
-# - Add a reverse proxy/web server (nginx) for SSL termination
+version: '3.8'
 
 services:
   backend:
     build: ./backend
     volumes:
-      - ./backend:/app  # PROD: Remove this volume mount for production
-      - /app/venv
+      - ./backend:/app
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=True  # PROD: Set to False in production
-      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,backend  # PROD: Update with production domain
-      # PROD: Add additional environment variables like:
-      # - SECRET_KEY=your-production-secret-key
-      # - DATABASE_URL=postgres://user:password@db:5432/dbname
+      - DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,backend
     restart: unless-stopped
 
   frontend:
     build: ./frontend
     volumes:
-      - ./frontend:/app  # PROD: Remove this volume mount for production
+      - ./frontend:/app
       - /app/node_modules
     ports:
-      - "5173:5173"  # PROD: In production, this would typically be handled by nginx
+      - "5173:3000"
     depends_on:
       - backend
     restart: unless-stopped
