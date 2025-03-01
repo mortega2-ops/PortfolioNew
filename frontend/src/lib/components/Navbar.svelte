@@ -1,8 +1,11 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { onMount } from 'svelte';
+  import GhostLogo from './GhostLogo.svelte';
   
   // Toggle mobile menu
   let isMenuOpen = false;
+  let scrolled = false;
   
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
@@ -20,13 +23,25 @@
     }
     return $page.url.pathname.startsWith(path);
   };
+  
+  onMount(() => {
+    const handleScroll = () => {
+      scrolled = window.scrollY > 50;
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 </script>
 
-<nav class="navbar">
+<nav class:scrolled={scrolled}>
   <div class="container">
     <div class="navbar-content">
-      <a href="/" class="logo" on:click={closeMenu}>
-        <span class="logo-text">Matrix<span class="logo-accent">Dev</span></span>
+      <a href="/" class="logo" on:click={closeMenu} aria-label="Home">
+        <GhostLogo size={45} />
       </a>
       
       <button class="menu-toggle" aria-label="Toggle menu" on:click={toggleMenu}>
@@ -76,15 +91,24 @@
 </nav>
 
 <style>
-  .navbar {
-    position: sticky;
+  nav {
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 3px rgba(0, 255, 0, 0.2);
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.2);
+    padding: 0.5rem 0;
   }
   
   .container {
@@ -100,21 +124,14 @@
   }
   
   .logo {
-    text-decoration: none;
     display: flex;
     align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
   }
   
-  .logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f0f0f0;
-    letter-spacing: 1px;
-  }
-  
-  .logo-accent {
-    color: #00ff00;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  .logo:hover {
+    transform: scale(1.05);
   }
   
   .nav-links {

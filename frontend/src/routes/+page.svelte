@@ -380,7 +380,7 @@
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     font-weight: 600;
-    background: linear-gradient(90deg, #00ff00, #00aa00);
+    background: linear-gradient(90deg, #ff0000, #cc0000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -414,24 +414,24 @@
   }
   
   .btn-primary {
-    background: linear-gradient(90deg, #00ff00, #00aa00);
-    color: #000;
-    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.25);
+    background: linear-gradient(90deg, #0066ff, #0044cc);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 102, 255, 0.25);
   }
   
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 7px 10px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 7px 10px rgba(0, 102, 255, 0.3);
   }
   
   .btn-outline {
     background: transparent;
-    color: #00ff00;
-    border: 2px solid #00ff00;
+    color: #0066ff;
+    border: 2px solid #0066ff;
   }
   
   .btn-outline:hover {
-    background-color: rgba(0, 255, 0, 0.1);
+    background-color: rgba(0, 102, 255, 0.1);
     transform: translateY(-2px);
   }
   
