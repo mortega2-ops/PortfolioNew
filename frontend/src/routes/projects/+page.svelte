@@ -218,7 +218,7 @@
   
   .tech-tag {
     background-color: #f0f4f8;
-    color: #3b82f6;
+    color: #0066ff;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -249,12 +249,12 @@
   }
   
   .project-link.live {
-    background-color: #3b82f6;
+    background-color: #0066ff;
     color: #fff;
   }
   
   .project-link.live:hover {
-    background-color: #2563eb;
+    background-color: #0044cc;
   }
   
   @media (max-width: 768px) {

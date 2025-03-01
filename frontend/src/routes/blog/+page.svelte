@@ -209,13 +209,14 @@
   
   .read-more {
     display: inline-block;
-    color: #3b82f6;
+    color: #0066ff;
     font-weight: 600;
     text-decoration: none;
   }
   
   .read-more:hover {
     text-decoration: underline;
+    color: #0044cc;
   }
   
   @media (max-width: 768px) {
