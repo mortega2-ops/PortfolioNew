@@ -4,7 +4,7 @@
   import '../app.css';
 </script>
 
-<MatrixBackground opacity={0.2} speed={1.2} color="#00ff00" />
+<MatrixBackground opacity={0.4} speed={0.8} color="#00ff00" />
 
 <Navbar />
 
@@ -31,14 +31,11 @@
       <div class="footer-social">
         <h4>Connect</h4>
         <div class="social-links">
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <a href="https://github.com/mortega2-ops" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             GitHub
           </a>
           <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             LinkedIn
-          </a>
-          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-            Twitter
           </a>
         </div>
       </div>

@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import RandomTechTerm from './RandomTechTerm.svelte';
   
   // Toggle mobile menu
   let isMenuOpen = false;
@@ -27,7 +26,7 @@
   <div class="container">
     <div class="navbar-content">
       <a href="/" class="logo" on:click={closeMenu}>
-        <RandomTechTerm asLink={false} />
+        <span class="logo-text">Matrix<span class="logo-accent">Dev</span></span>
       </a>
       
       <button class="menu-toggle" aria-label="Toggle menu" on:click={toggleMenu}>
@@ -104,6 +103,18 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    letter-spacing: 1px;
+  }
+  
+  .logo-accent {
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
   }
   
   .nav-links {

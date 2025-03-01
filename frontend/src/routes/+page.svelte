@@ -1,15 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import RandomTechTerm from '$lib/components/RandomTechTerm.svelte';
   
   // Set document title
   onMount(() => {
-    document.title = "Portfolio | Home";
+    document.title = "Mark Ortega | Portfolio";
   });
   
   // Your information
-  const name = "Your Name";
-  const title = "Full Stack Developer";
+  const name = "Mark Ortega";
+  const title = "Software Developer";
   
   // Form handling
   let formData = {
@@ -47,13 +46,11 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="glitch-container">
-          <h1 class="glitch" data-text="Hi, I'm {name}">Hi, I'm {name}</h1>
-        </div>
+        <h1 class="hero-title">Hi, I'm {name}</h1>
         <h2 class="gradient-text">{title}</h2>
         <div class="hero-description">
           I build modern web applications with cutting-edge technologies.
-          Interested in <RandomTechTerm asLink={true} />? Let's connect!
+          Interested in <span class="highlight-text">digital innovation</span>? Let's connect!
         </div>
         <div class="cta-buttons">
           <a href="/projects" class="btn btn-primary">View Projects</a>
@@ -70,18 +67,24 @@
       <div class="about-content">
         <div class="about-text">
           <p>
-            I'm a passionate full-stack developer with expertise in building web applications
+            I'm a passionate software developer with expertise in building web applications
             using modern technologies. With a strong foundation in both frontend and backend
-            development, I create seamless, user-friendly experiences.
+            development, I create seamless, user-friendly experiences across multiple platforms and languages.
           </p>
           <p>
-            My journey in software development began several years ago, and I've since worked
-            on a variety of projects ranging from small business websites to complex web applications.
-            I'm constantly learning and exploring new technologies to improve my skills.
+            My technical toolkit includes JavaScript/TypeScript, Python, C++, and Java, along with 
+            experience in cloud services like AWS and deploying resources via CDK. I've worked on 
+            projects ranging from small business websites to complex web applications and enterprise-level systems.
           </p>
           <p>
-            When I'm not coding, you can find me hiking, reading tech blogs, or experimenting
-            with new programming languages and frameworks.
+            My current focus is on Artificial Intelligence and its practical applications in production environments. 
+            I'm particularly interested in finding innovative ways to integrate AI into large-scale codebases and databases, 
+            making intelligent systems more accessible and useful for real-world applications.
+          </p>
+          <p>
+            As an avid learner, I've been experimenting with building simple LLMs that can run locally on ARM devices 
+            like the Jetson Orin for robotics applications. This blend of software development and AI exploration 
+            allows me to stay at the cutting edge of technology while creating practical solutions.
           </p>
         </div>
       </div>
@@ -98,6 +101,8 @@
           <ul class="skill-list">
             <li>JavaScript/TypeScript</li>
             <li>Python</li>
+            <li>C++</li>
+            <li>Java</li>
             <li>HTML/CSS</li>
             <li>SQL</li>
           </ul>
@@ -114,13 +119,91 @@
         </div>
         
         <div class="skill-category">
-          <h3>Tools</h3>
+          <h3>Tools & Platforms</h3>
           <ul class="skill-list">
+            <li>AWS Cloud Services</li>
+            <li>AWS CDK</li>
             <li>Git</li>
             <li>Docker</li>
             <li>VS Code</li>
-            <li>Figma</li>
           </ul>
+        </div>
+
+        <div class="skill-category">
+          <h3>AI & ML</h3>
+          <ul class="skill-list">
+            <li>LLM Development</li>
+            <li>AI Integration</li>
+            <li>Robotics (Jetson)</li>
+            <li>Data Processing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Current Interests Section -->
+  <section class="interests">
+    <div class="container">
+      <h2 class="section-title">Current Interests</h2>
+      <p class="interests-intro">
+        These are the technologies and concepts I'm currently exploring, ranked by my level of focus.
+      </p>
+      
+      <div class="interests-content">
+        <div class="interest-item">
+          <div class="interest-rank">#1</div>
+          <div class="interest-details">
+            <h3>AI Integration in Production</h3>
+            <div class="interest-bar">
+              <div class="interest-progress" style="width: 95%;"></div>
+            </div>
+            <p>Developing strategies and tools to integrate AI into large-scale production systems</p>
+          </div>
+        </div>
+        
+        <div class="interest-item">
+          <div class="interest-rank">#2</div>
+          <div class="interest-details">
+            <h3>Edge AI & Robotics</h3>
+            <div class="interest-bar">
+              <div class="interest-progress" style="width: 85%;"></div>
+            </div>
+            <p>Building lightweight LLMs for ARM devices like Jetson Orin for robotics applications</p>
+          </div>
+        </div>
+        
+        <div class="interest-item">
+          <div class="interest-rank">#3</div>
+          <div class="interest-details">
+            <h3>Cloud Infrastructure</h3>
+            <div class="interest-bar">
+              <div class="interest-progress" style="width: 75%;"></div>
+            </div>
+            <p>Advanced AWS architectures and infrastructure as code with CDK</p>
+          </div>
+        </div>
+        
+        <div class="interest-item">
+          <div class="interest-rank">#4</div>
+          <div class="interest-details">
+            <h3>Modern Web Development</h3>
+            <div class="interest-bar">
+              <div class="interest-progress" style="width: 70%;"></div>
+            </div>
+            <p>Exploring new frameworks and techniques for building responsive, performant web applications</p>
+          </div>
+        </div>
+        
+        <div class="interest-item">
+          <div class="interest-rank">#5</div>
+          <div class="interest-details">
+            <h3>Low-Level Programming</h3>
+            <div class="interest-bar">
+              <div class="interest-progress" style="width: 65%;"></div>
+            </div>
+            <p>Optimizing C++ and exploring systems programming for performance-critical applications</p>
+          </div>
         </div>
       </div>
     </div>
@@ -149,9 +232,8 @@
           <div class="contact-item">
             <h3>Social</h3>
             <div class="social-links">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://github.com/mortega2-ops" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">Twitter</a>
             </div>
           </div>
         </div>
@@ -285,81 +367,13 @@
     z-index: 2;
   }
   
-  /* Glitch effect for the title */
-  .glitch-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-  }
-  
-  .glitch {
+  /* Hero title - replaced glitch effect with clean style */
+  .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
     color: #f0f0f0;
-    position: relative;
-    margin: 0;
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.1), 
-                -0.05em 0 0 rgba(0, 255, 0, 0.1), 
-                0.025em 0 0 rgba(0, 0, 255, 0.1);
-    animation: glitch 3s infinite;
-  }
-  
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
-  }
-  
-  .glitch::before {
-    animation: glitch-effect 3s infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-    transform: translate(-0.04em, -0.025em);
-    opacity: 0.8;
-  }
-  
-  .glitch::after {
-    animation: glitch-effect 2.5s infinite reverse;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-    transform: translate(0.04em, 0.025em);
-    opacity: 0.8;
-  }
-  
-  @keyframes glitch-effect {
-    0% {
-      transform: translate(0);
-    }
-    10% {
-      transform: translate(-5px, 5px);
-    }
-    20% {
-      transform: translate(-5px, -5px);
-    }
-    30% {
-      transform: translate(5px, 5px);
-    }
-    40% {
-      transform: translate(5px, -5px);
-    }
-    50% {
-      transform: translate(-5px, 5px);
-    }
-    60% {
-      transform: translate(5px, 5px);
-    }
-    70% {
-      transform: translate(-5px, -5px);
-    }
-    80% {
-      transform: translate(0);
-    }
-    100% {
-      transform: translate(0);
-    }
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   }
   
   .gradient-text {
@@ -504,120 +518,85 @@
     font-weight: bold;
   }
   
-  /* Contact Section */
-  .contact {
+  /* Current Interests Section */
+  .interests {
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
   }
   
-  .contact-intro {
+  .interests-intro {
     text-align: center;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto 3rem;
     font-size: 1.2rem;
     color: #cccccc;
   }
   
-  .contact-content {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 3rem;
-    max-width: 1000px;
+  .interests-content {
+    max-width: 900px;
     margin: 0 auto;
-  }
-  
-  .contact-item {
-    margin-bottom: 2rem;
-  }
-  
-  .contact-item h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-    color: #00ff00;
-  }
-  
-  .contact-item p {
-    font-size: 1.1rem;
-    color: #cccccc;
-  }
-  
-  .social-links {
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1.5rem;
   }
   
-  .social-links a {
-    color: #cccccc;
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  
-  .social-links a:hover {
-    color: #00ff00;
-  }
-  
-  .contact-form {
+  .interest-item {
     background-color: rgba(0, 0, 0, 0.8);
-    padding: 2rem;
     border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
     box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1);
-    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(0, 255, 0, 0.1);
   }
   
-  .form-group {
-    margin-bottom: 1.5rem;
+  .interest-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.3);
   }
   
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #cccccc;
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #333;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #f0f0f0;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    backdrop-filter: blur(5px);
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #00ff00;
-    box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.1);
-  }
-  
-  .form-success {
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  .form-success h3 {
+  .interest-rank {
+    font-size: 2rem;
+    font-weight: 800;
     color: #00ff00;
-    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    min-width: 60px;
+    text-align: center;
   }
   
-  .form-error {
-    background-color: rgba(255, 0, 0, 0.2);
-    color: #ff6666;
-    padding: 0.75rem;
+  .interest-details {
+    flex: 1;
+  }
+  
+  .interest-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #f0f0f0;
+  }
+  
+  .interest-bar {
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
-    margin-bottom: 1.5rem;
-    backdrop-filter: blur(5px);
+    margin-bottom: 1rem;
+    overflow: hidden;
   }
   
-  /* Responsive Styles */
+  .interest-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #00aa00);
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  
+  .interest-details p {
+    color: #cccccc;
+    font-size: 1rem;
+  }
+  
   @media (max-width: 768px) {
     section {
       padding: 4rem 0;
@@ -627,7 +606,7 @@
       padding: 6rem 0;
     }
     
-    .glitch {
+    .hero-title {
       font-size: 2.5rem;
     }
     
@@ -643,5 +622,148 @@
     .cta-buttons .btn {
       width: 100%;
     }
+    
+    .interest-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .interest-rank {
+      min-width: auto;
+      text-align: left;
+    }
+  }
+  
+  .highlight-text {
+    color: #00ff00;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .highlight-text::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #00ff00;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  }
+
+  /* Contact Section */
+  .contact {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+  }
+
+  .contact-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
+    color: #cccccc;
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .contact-item {
+    margin-bottom: 2rem;
+  }
+
+  .contact-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: #00ff00;
+  }
+
+  .contact-item p {
+    font-size: 1.1rem;
+    color: #cccccc;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .social-links a:hover {
+    color: #00ff00;
+  }
+
+  .contact-form {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #cccccc;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #f0f0f0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #00ff00;
+    box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.1);
+  }
+
+  .form-success {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .form-success h3 {
+    color: #00ff00;
+    margin-bottom: 1rem;
+  }
+
+  .form-error {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff6666;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
   }
 </style>
